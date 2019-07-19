@@ -1,7 +1,7 @@
 # FilePicker
 一个选择文件或者文件夹的库,集成知乎的Matisse图片选择库
 
-依赖:
+依赖:Tag-->[![](https://jitpack.io/v/fengxiaocan/FilePicker.svg)](https://jitpack.io/#fengxiaocan/FilePicker)
 
 Add it in your root build.gradle at the end of repositories:
 
@@ -14,7 +14,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.fengxiaocan:FilePicker:[![](https://jitpack.io/v/fengxiaocan/FilePicker.svg)](https://jitpack.io/#fengxiaocan/FilePicker)'
+	        implementation 'com.github.fengxiaocan:FilePicker:Tag'
 	}
 
 
