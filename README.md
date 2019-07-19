@@ -13,7 +13,7 @@
                        }
                    }).start(this);
                                 
-###2.选择文件夹
+##2.选择文件夹
 
         FilePicker.chooseForBrowser().selectDirectory(new OnFilePickerSelectDirListener() {
                       @Override
@@ -23,7 +23,7 @@
                   }).start(this);
                         
                         
-###3.选择筛选文件
+##3.选择筛选文件
 
         FilePicker.chooseForMimeType().setTheme(R.style.FilePicker_Dracula).setMaxCount(10)
                    .setFileTypes("png", "doc", "apk", "mp3", "gif", "txt", "mp4", "zip")
@@ -36,12 +36,11 @@
                        }
                    }).start(this);
                    
-###4.知乎图片选择库(已集成当前回调方式,可以在dialog或其他非application context 中打开选择图片或视频)
+##4.知乎图片选择库(已集成当前回调方式,可以在dialog或其他非application context 中打开选择图片或视频)
 #    集成需要添加知乎图片选择库的依赖,默认集成Glide4.9版本
-
-    implementation 'com.zhihu.android:matisse:latest.release'
+    `implementation 'com.zhihu.android:matisse:latest.release'`
     
-#    可以使用下面的用法跟知乎的一样,或者 https://github.com/zhihu/Matisse
+#    可以使用下面的用法跟知乎的一样,或者 [Matisse](https://github.com/zhihu/Matisse)
 
         FilePicker.chooseMedia(FilePicker.ofImage()).theme(FilePicker.zhihuTheme())
                   .addFilter(new GifFilter()).showSingleMediaType(true)
