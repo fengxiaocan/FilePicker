@@ -1,5 +1,23 @@
 # FilePicker
 一个选择文件或者文件夹的库,集成知乎的Matisse图片选择库
+
+依赖:
+
+Add it in your root build.gradle at the end of repositories:
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+Step 2. Add the dependency
+
+	dependencies {
+	        implementation 'com.github.fengxiaocan:FilePicker:[![](https://jitpack.io/v/fengxiaocan/FilePicker.svg)](https://jitpack.io/#fengxiaocan/FilePicker)'
+	}
+
+
 ###1.文件浏览器:
 
         FilePicker.chooseForBrowser().setMaxCount(2).setFileTypes("png", "doc", "apk",
@@ -46,3 +64,4 @@
                   .addFilter(new GifFilter()).showSingleMediaType(true)
                   .setOnSelectResultListener(list -> {
                   }).start(context);
+
