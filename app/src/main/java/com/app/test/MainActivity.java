@@ -11,6 +11,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.app.filepicker.FilePicker;
+import com.app.filepicker.OnFilePickerSelectDirListener;
 import com.app.filepicker.OnFilePickerSelectListener;
 import com.app.filepicker.filter.GifFilter;
 import com.app.filepicker.model.EssFile;
