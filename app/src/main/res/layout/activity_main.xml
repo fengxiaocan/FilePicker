@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/bt_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="选择文件" />
+    <Button
+        android:id="@+id/bt_find"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="分类查找指定后缀名文件" />
+
+    <Button
+        android:id="@+id/bt_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="在图片选择器中选择图片或视频" />
+
+</LinearLayout>
