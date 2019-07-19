@@ -56,7 +56,8 @@ Step 2. Add the dependency
                    
 ##4.知乎图片选择库(已集成当前回调方式,可以在dialog或其他非application context 中打开选择图片或视频)
 #    集成需要添加知乎图片选择库的依赖,默认集成Glide4.9版本
-    `implementation 'com.zhihu.android:matisse:latest.release'`
+
+    implementation 'com.zhihu.android:matisse:latest.release'
     
 #    可以使用下面的用法跟知乎的一样,或者 [Matisse](https://github.com/zhihu/Matisse)
 
