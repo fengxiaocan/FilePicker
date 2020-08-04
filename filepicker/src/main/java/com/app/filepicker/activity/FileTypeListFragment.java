@@ -17,6 +17,7 @@ import com.app.filepicker.model.EssFile;
 import com.app.filepicker.model.FileScanActEvent;
 import com.app.filepicker.model.FileScanFragEvent;
 import com.app.filepicker.model.FileScanSortChangedEvent;
+import com.evil.recycler.holder.RecyclerViewHolder;
 import com.evil.recycler.inface.OnAdapterItemClickListener;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -170,7 +171,8 @@ public class FileTypeListFragment extends BaseFileFragment
     }
 
     @Override
-    public void onItemClick(View view, List<EssFile> list, int position) {
+    public void onItemClick(View view, RecyclerViewHolder<EssFile> holder, int position) {
+        List<EssFile> list = holder.getAdapterDatas();
         EssFile item = list.get(position);
         //选中某文件后，判断是否单选
         if (mIsSingle) {
@@ -200,4 +202,5 @@ public class FileTypeListFragment extends BaseFileFragment
             mAdapter.notifyItemChanged(position, "");
         }
     }
+
 }

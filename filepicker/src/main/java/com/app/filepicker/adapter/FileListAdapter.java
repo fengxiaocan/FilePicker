@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatCheckBox;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.filepicker.R;
 import com.app.filepicker.model.EssFile;
@@ -51,18 +50,6 @@ public class FileListAdapter
         return R.layout.item_file_list;
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        if (isEmpty() && isHasEmptyView()) {
-            return mEmptyView.hashCode();
-        }
-        return 0;
-    }
-
-    public interface onLoadFileCountListener{
-        void onLoadFileCount(int posistion);
-    }
-
     public onLoadFileCountListener getLoadFileCountListener() {
         return loadFileCountListener;
     }
@@ -71,13 +58,17 @@ public class FileListAdapter
         this.loadFileCountListener = loadFileCountListener;
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull BaseRecyclerHolder holder, int position) {
         if (holder instanceof BaseViewHolder) {
             ((BaseViewHolder) holder).setLoadFileCountListener(loadFileCountListener);
         }
         super.onBindViewHolder(holder, position);
+    }
+
+
+    public interface onLoadFileCountListener {
+        void onLoadFileCount(int posistion);
     }
 
     static class BaseViewHolder extends RecyclerViewHolder<EssFile> {
@@ -92,19 +83,19 @@ public class FileListAdapter
             super(itemView);
         }
 
-        public void setLoadFileCountListener(onLoadFileCountListener loadFileCountListener)
-        {
+
+        public void setLoadFileCountListener(onLoadFileCountListener loadFileCountListener) {
             this.loadFileCountListener = loadFileCountListener;
         }
 
         @Override
-        public void setData(RecyclerView.Adapter adapter, EssFile item, int position) {
+        public void onBindData(EssFile item) {
             if (item.isDirectory()) {
                 ivItemFileSelectRight.setVisibility(View.VISIBLE);
                 if (item.getChildFolderCount().equals("加载中")) {
                     //查找数量
                     if (loadFileCountListener != null) {
-                        loadFileCountListener.onLoadFileCount(position);
+                        loadFileCountListener.onLoadFileCount(getDataPosition());
                     }
                 }
                 tvItemFileListDesc.setText(

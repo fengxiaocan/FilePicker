@@ -33,6 +33,7 @@ import com.app.filepicker.task.EssFileListTask;
 import com.app.filepicker.util.Const;
 import com.app.filepicker.util.FileUtils;
 import com.app.filepicker.util.LogUtils;
+import com.evil.recycler.holder.RecyclerViewHolder;
 import com.evil.recycler.inface.OnAdapterItemClickListener;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -143,10 +144,10 @@ public class SelectFileByBrowserActivity extends AppCompatActivity
         //        mBreadAdapter.setOnItemChildClickListener(this);
         mBreadAdapter.setOnItemClickListener(new OnAdapterItemClickListener<BreadModel>() {
             @Override
-            public void onItemClick(View view, List<BreadModel> list, int position) {
-                LogUtils.error("noah","mBreadAdapter");
+            public void onItemClick(View view, RecyclerViewHolder<BreadModel> holder, int position) {
+                LogUtils.error("noah", "mBreadAdapter");
                 //点击某个路径时
-                String queryPath = FileUtils.getBreadModelListByPosition(mSdCardList, list,
+                String queryPath = FileUtils.getBreadModelListByPosition(mSdCardList, holder.getAdapterDatas(),
                         position);
                 if (mCurFolder.equals(queryPath)) {
                     return;
@@ -164,8 +165,7 @@ public class SelectFileByBrowserActivity extends AppCompatActivity
     }
 
     private void executeListTask(List<EssFile> essFileList, String queryPath, String[] types,
-            int sortType)
-    {
+                                 int sortType) {
         essFileListTask = new EssFileListTask(essFileList, queryPath, types, sortType, this);
         essFileListTask.execute();
     }
@@ -206,7 +206,7 @@ public class SelectFileByBrowserActivity extends AppCompatActivity
         //先让其滚动到顶部，然后再scrollBy，滚动到之前保存的位置
         mRecyclerView.scrollToPosition(0);
         int scrollYPosition = mBreadAdapter.getDatas().get(mBreadAdapter.getDatas().size() - 1)
-                                           .getPrePosition();
+                .getPrePosition();
         //恢复之前的滚动位置
         mRecyclerView.scrollBy(0, scrollYPosition);
     }
@@ -232,12 +232,12 @@ public class SelectFileByBrowserActivity extends AppCompatActivity
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new OnAdapterItemClickListener<String>() {
             @Override
-            public void onItemClick(View view, List<String> list, int position) {
-                LogUtils.error("noah","mSelectSdCardWindow");
+            public void onItemClick(View view, RecyclerViewHolder<String> holder, int position) {
+                LogUtils.error("noah", "mSelectSdCardWindow");
                 mSelectSdCardWindow.dismiss();
                 mHasChangeSdCard = true;
                 executeListTask(mSelectedFileList,
-                        FileUtils.getChangeSdCard(list.get(position), mSdCardList),
+                        FileUtils.getChangeSdCard(holder.getAdapterDatas().get(position), mSdCardList),
                         SelectOptions.getInstance().getFileTypes(),
                         SelectOptions.getInstance().getSortType());
             }
@@ -259,8 +259,7 @@ public class SelectFileByBrowserActivity extends AppCompatActivity
 
     @Override
     public void onFindChildFileAndFolderCount(int position, String childFileCount,
-            String childFolderCount)
-    {
+                                              String childFolderCount) {
         mAdapter.getDatas().get(position).setChildCounts(childFileCount, childFolderCount);
         mAdapter.notifyItemChanged(position, "childCountChanges");
     }
@@ -285,7 +284,7 @@ public class SelectFileByBrowserActivity extends AppCompatActivity
             return;
         }
         executeListTask(mSelectedFileList, new File(mCurFolder).getParentFile().getAbsolutePath() +
-                                           File.separator,
+                        File.separator,
                 SelectOptions.getInstance().getFileTypes(),
                 SelectOptions.getInstance().getSortType());
     }
@@ -357,8 +356,8 @@ public class SelectFileByBrowserActivity extends AppCompatActivity
                     }
                     //恢复排序
                     mBreadAdapter.getDatas().get(mBreadAdapter.getDatas().size() - 1)
-                                 .setPrePosition(
-                            0);
+                            .setPrePosition(
+                                    0);
                     executeListTask(mSelectedFileList, mCurFolder,
                             SelectOptions.getInstance().getFileTypes(),
                             SelectOptions.getInstance().getSortType());
@@ -382,8 +381,8 @@ public class SelectFileByBrowserActivity extends AppCompatActivity
                     }
                     //恢复排序
                     mBreadAdapter.getDatas().get(mBreadAdapter.getDatas().size() - 1)
-                                 .setPrePosition(
-                            0);
+                            .setPrePosition(
+                                    0);
                     executeListTask(mSelectedFileList, mCurFolder,
                             SelectOptions.getInstance().getFileTypes(),
                             SelectOptions.getInstance().getSortType());
@@ -403,7 +402,8 @@ public class SelectFileByBrowserActivity extends AppCompatActivity
     }
 
     @Override
-    public void onItemClick(View view, List<EssFile> list, int position) {
+    public void onItemClick(View view, RecyclerViewHolder<EssFile> holder, int position) {
+        List<EssFile> list = holder.getAdapterDatas();
         EssFile item = list.get(position);
         if (item.isDirectory()) {
             //点击文件夹

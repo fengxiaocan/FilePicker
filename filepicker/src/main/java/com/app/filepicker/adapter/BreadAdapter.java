@@ -26,10 +26,6 @@ public class BreadAdapter extends RecyclerViewAdapter<BreadModel, BreadAdapter.B
         mDatas = data;
     }
 
-    OnAdapterItemClickListener<BreadModel> getOnItemClickListener() {
-        return mOnItemClickListener;
-    }
-
     @Override
     public boolean attachParent() {
         return false;
@@ -54,23 +50,8 @@ public class BreadAdapter extends RecyclerViewAdapter<BreadModel, BreadAdapter.B
         }
 
         @Override
-        public void setData(final RecyclerView.Adapter adapter, BreadModel breadModel,
-                final int position)
-        {
+        public void onBindData(BreadModel breadModel) {
             btnBread.setText(breadModel.getCurName());
-            View.OnClickListener listener = new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    BreadAdapter breadAdapter = (BreadAdapter) adapter;
-                    OnAdapterItemClickListener<BreadModel> onItemClickListener =
-                            breadAdapter.getOnItemClickListener();
-                    if (onItemClickListener != null) {
-                        onItemClickListener.onItemClick(view, breadAdapter.getDatas(), position);
-                    }
-                }
-            };
-            imbBread.setOnClickListener(listener);
-            btnBread.setOnClickListener(listener);
         }
 
         @Override

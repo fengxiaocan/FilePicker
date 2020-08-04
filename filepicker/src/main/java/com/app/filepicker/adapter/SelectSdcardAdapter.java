@@ -46,7 +46,7 @@ public class SelectSdcardAdapter extends
         }
 
         @Override
-        public void setData(RecyclerView.Adapter adapter, String s, int position) {
+        public void onBindData(String s) {
             tvItemSelectSdcard.setText(s);
         }
 
