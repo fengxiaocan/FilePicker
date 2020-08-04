@@ -19,6 +19,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.dialoglib.RxAlertDialog;
 import com.app.filepicker.R;
 import com.app.filepicker.SelectOptions;
 import com.app.filepicker.adapter.BreadAdapter;
@@ -331,7 +332,8 @@ public class SelectFileByBrowserActivity extends AppCompatActivity
             super.onBackPressed();
         } else if (i == R.id.browser_sort) {
             //排序
-            new AlertDialog.Builder(this).setSingleChoiceItems(R.array.sort_list, 0,
+
+            new ADBuilder(this).setSingleChoiceItems(R.array.sort_list, 0,
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

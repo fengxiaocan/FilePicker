@@ -160,7 +160,7 @@ public class SelectFileByScanActivity extends AppCompatActivity
             finish();
         } else if (i == R.id.browser_sort) {
             //排序
-            new AlertDialog.Builder(this).setSingleChoiceItems(R.array.sort_list_scan, 0,
+            new ADBuilder(this).setSingleChoiceItems(R.array.sort_list_scan, 0,
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

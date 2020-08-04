@@ -11,7 +11,6 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.app.filepicker.FilePicker;
-import com.app.filepicker.OnFilePickerSelectDirListener;
 import com.app.filepicker.OnFilePickerSelectListener;
 import com.app.filepicker.filter.GifFilter;
 import com.app.filepicker.model.EssFile;
@@ -36,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    //
     private void initView() {
         mBtFile = (Button) findViewById(R.id.bt_file);
         mBtFind = (Button) findViewById(R.id.bt_find);
@@ -64,24 +62,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.bt_find:
                 FilePicker.chooseForMimeType().setTheme(R.style.FilePicker_Dracula).setMaxCount(10)
-                          .setFileTypes("png", "doc", "apk", "mp3", "gif", "txt", "mp4", "zip")
-                          .selectFiles(new OnFilePickerSelectListener() {
-                              @Override
-                              public void onFilePickerResult(List<EssFile> essFiles) {
-                                  for (EssFile essFile : essFiles) {
-                                      LogUtils.debug("noah", essFile.getAbsolutePath());
-                                  }
-                              }
-                          }).start(this);
+                        .setFileTypes("png", "doc", "apk", "mp3", "gif", "txt", "mp4", "zip")
+                        .selectFiles(new OnFilePickerSelectListener() {
+                            @Override
+                            public void onFilePickerResult(List<EssFile> essFiles) {
+                                for (EssFile essFile : essFiles) {
+                                    LogUtils.debug("noah", essFile.getAbsolutePath());
+                                }
+                            }
+                        }).start(this);
                 break;
             case R.id.bt_image:
                 FilePicker.chooseMedia(FilePicker.ofImage()).theme(FilePicker.zhihuTheme())
-                          .addFilter(new GifFilter()).showSingleMediaType(true)
-                          .setOnSelectResultListener(list -> {
-                              for (Uri uri : list) {
-                                  LogUtils.error("noah", uri.getPath());
-                              }
-                          }).start(this);
+                        .addFilter(new GifFilter()).showSingleMediaType(true)
+                        .setOnSelectResultListener(list -> {
+                            for (Uri uri : list) {
+                                LogUtils.error("noah", uri.getPath());
+                            }
+                        }).start(this);
                 break;
         }
     }
