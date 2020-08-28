@@ -4,6 +4,8 @@ package com.app.filepicker.adapter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,10 +24,6 @@ import java.util.List;
 
 public class BreadAdapter extends RecyclerViewAdapter<BreadModel, BreadAdapter.BaseViewHolder> {
 
-    public BreadAdapter(@Nullable List<BreadModel> data) {
-        mDatas = data;
-    }
-
     @Override
     public boolean attachParent() {
         return false;
@@ -42,8 +40,8 @@ public class BreadAdapter extends RecyclerViewAdapter<BreadModel, BreadAdapter.B
     }
 
     static class BaseViewHolder extends RecyclerViewHolder<BreadModel> {
-        private Button btnBread;
-        private ImageButton imbBread;
+        private TextView btnBread;
+        private ImageView imbBread;
 
         public BaseViewHolder(View itemView) {
             super(itemView);

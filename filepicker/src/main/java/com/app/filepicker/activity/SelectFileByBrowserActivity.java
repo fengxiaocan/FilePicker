@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,13 +14,11 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.app.dialoglib.RxAlertDialog;
 import com.app.filepicker.R;
 import com.app.filepicker.SelectOptions;
 import com.app.filepicker.adapter.BreadAdapter;
@@ -138,18 +137,16 @@ public class SelectFileByBrowserActivity extends AppCompatActivity
 
         mAdapter.setOnItemClickListener(this);
 
-        mBreadRecyclerView.setLayoutManager(
-                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        mBreadAdapter = new BreadAdapter(new ArrayList<BreadModel>());
+        mBreadRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mBreadAdapter = new BreadAdapter();
         mBreadRecyclerView.setAdapter(mBreadAdapter);
-        //        mBreadAdapter.setOnItemChildClickListener(this);
+
         mBreadAdapter.setOnItemClickListener(new OnAdapterItemClickListener<BreadModel>() {
             @Override
             public void onItemClick(View view, RecyclerViewHolder<BreadModel> holder, int position) {
-                LogUtils.error("noah", "mBreadAdapter");
+                Log.e("noah", "onItemClick=" + position);
                 //点击某个路径时
-                String queryPath = FileUtils.getBreadModelListByPosition(mSdCardList, holder.getAdapterDatas(),
-                        position);
+                String queryPath = FileUtils.getBreadModelListByPosition(mSdCardList, holder.getAdapterDatas(), position);
                 if (mCurFolder.equals(queryPath)) {
                     return;
                 }
@@ -197,8 +194,11 @@ public class SelectFileByBrowserActivity extends AppCompatActivity
                 int removePosition = BreadModel.getRemovedBreadModel(mBreadAdapter.getDatas(),
                         breadModelList);
                 if (removePosition > 0) {
-                    mBreadAdapter.setDatasAndNotify(
-                            mBreadAdapter.getDatas().subList(0, removePosition));
+                    List<BreadModel> datas = new ArrayList<>();
+                    for (int i = 0; i < removePosition; i++) {
+                        datas.add(mBreadAdapter.getData(i));
+                    }
+                    mBreadAdapter.setDatasAndNotify(datas);
                 }
             }
         }
