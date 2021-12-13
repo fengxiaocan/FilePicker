@@ -22,10 +22,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:latest.release'
-    implementation 'androidx.recyclerview:recyclerview:latest.release'
-    implementation 'com.google.android.material:material:latest.release'
-    implementation 'androidx.constraintlayout:constraintlayout:latest.release'
+    compileOnly 'androidx.appcompat:appcompat:latest.release'
+    compileOnly 'androidx.recyclerview:recyclerview:latest.release'
+    compileOnly 'com.google.android.material:material:latest.release'
+    compileOnly 'androidx.constraintlayout:constraintlayout:latest.release'
 
     implementation 'com.github.fengxiaocan:RxDialog:latest.release'
     implementation 'com.github.fengxiaocan:RecyclerHelper:latest.release'
