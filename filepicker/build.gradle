@@ -28,7 +28,7 @@ dependencies {
     compileOnly 'androidx.constraintlayout:constraintlayout:latest.release'
 
     implementation 'com.github.fengxiaocan:RxDialog:latest.release'
-    implementation 'com.github.fengxiaocan:RecyclerHelper:latest.release'
+    compileOnly 'com.github.fengxiaocan:RecyclerHelper:latest.release'
     implementation 'com.github.bumptech.glide:glide:latest.release'
     implementation 'org.greenrobot:eventbus:latest.release'
     implementation 'com.zhihu.android:matisse:latest.release'
